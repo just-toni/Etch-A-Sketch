@@ -2,17 +2,16 @@ let body = document.querySelector('body');
 let outer_div = document.createElement('div');
 let buttonsldercontainer = document.createElement('section');
 let buttonslider = document.createElement('input');
+let textSizeControl = document.createElement('p');
+body.appendChild(textSizeControl);
 buttonslider.setAttribute('type', 'range');
 buttonslider.setAttribute('min', '1');
 buttonslider.setAttribute('max', '100');
 buttonslider.addEventListener('input', getValue);
-
 function getValue(e){
-    console.log(buttonslider.value);
+    textSizeControl.textContent = `${buttonslider.value} x ${buttonslider.value}`;
 }
-
 buttonslider.style.cssText = "width: 100px; height: 25px; background: grey; outline: none; opacity: 0.7;";
-console.log(buttonslider.value);
 buttonsldercontainer.appendChild(buttonslider);
 body.appendChild(buttonslider);
 
