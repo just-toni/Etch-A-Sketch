@@ -5,6 +5,12 @@ let buttonslider = document.createElement('input');
 buttonslider.setAttribute('type', 'range');
 buttonslider.setAttribute('min', '1');
 buttonslider.setAttribute('max', '100');
+buttonslider.addEventListener('input', getValue);
+
+function getValue(e){
+    console.log(buttonslider.value);
+}
+
 buttonslider.style.cssText = "width: 100px; height: 25px; background: grey; outline: none; opacity: 0.7;";
 console.log(buttonslider.value);
 buttonsldercontainer.appendChild(buttonslider);
