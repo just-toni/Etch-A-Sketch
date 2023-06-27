@@ -53,12 +53,7 @@ for (let index = 0; index < 256; index++) {
     innerSection.addEventListener('mouseover', e =>{
         innerSection.style.backgroundColor = rgb;
     });
-    // innerSection.addEventListener('mouseover', e => {
 
-    // })
-    // innerSection.addEventListener('mouseout', e =>{
-    //     innerSection.style.backgroundColor = 'white';
-    // })
 }
 
 randomColourBtn.addEventListener('click', randomColorGenerator2);
@@ -94,5 +89,11 @@ function randomColorGenerator(e){
 //     innerSection.addEventListener('mouseover', e =>{
 //         innerSection.style.backgroundColor = 'blue';
 //     })
+    // innerSection.addEventListener('mouseover', e => {
+
+    // })
+    // innerSection.addEventListener('mouseout', e =>{
+    //     innerSection.style.backgroundColor = 'white';
+    // })
 // }
 body.appendChild(main);
