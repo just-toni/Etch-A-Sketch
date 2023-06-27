@@ -38,22 +38,11 @@ buttonslider.style.cssText = "width: 100px; height: 25px; background: grey; outl
 buttonsldercontainer.appendChild(buttonslider);
 aside.appendChild(buttonslider);
 
-
-
-// randomColorGenerator();
-let  first = Math.floor(Math.random()*255);
-let second = Math.floor(Math.random()*255);
-let third = Math.floor(Math.random()*255);
-let rgb = `rgb(${first}, ${second}, ${third})`;
 for (let index = 0; index < 256; index++) {
     let innerSection = document.createElement('section');
     innerSection.style.cssText = "background-color: white; width: 27px; height: 27px; border: black 0.5px solid; ";
     innerSection.setAttribute('class', 'grid-sqaure')
     main.appendChild(innerSection);
-    innerSection.addEventListener('mouseover', e =>{
-        innerSection.style.backgroundColor = rgb;
-    });
-
 }
 
 randomColourBtn.addEventListener('click', randomColorGenerator2);
@@ -66,7 +55,7 @@ function randomColorGenerator2(e){
             let rgb = `rgb(${first}, ${second}, ${third})`;
             element.style.backgroundColor = rgb;
         });
-    })
+    });
 }
 
 randomColourBtn2.addEventListener('click', randomColorGenerator);
@@ -79,8 +68,31 @@ function randomColorGenerator(e){
         element.addEventListener('mouseover', e => {
             element.style.backgroundColor = rgb;
         });
-    })
+    });
 }
+
+defaultColourBtn.addEventListener('click', e => {
+    document.querySelectorAll('section').forEach(element => {
+        element.addEventListener('mouseover', e => {
+            element.style.backgroundColor = 'blue';
+        });
+    });
+});
+
+eraserBtn.addEventListener('click', e => {
+    document.querySelectorAll('section').forEach(element => {
+        element.addEventListener('click', e => {
+            element.style.backgroundColor = 'white';
+        });
+    });
+});
+
+clearButton.addEventListener('click', e => {
+    document.querySelectorAll('section').forEach(element => {
+        element.style.backgroundColor = 'white';
+    });
+})
+
 
 // for (let index = 0; index < 4096; index++) {
 //     let innerSection = document.createElement('div');
