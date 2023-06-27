@@ -20,6 +20,12 @@ clearButton.textContent = "Clear Grid";
 let eraserBtn = document.createElement('button');
 aside.appendChild(eraserBtn);
 eraserBtn.textContent = "Erase";
+let darkenBtn = document.createElement('button');
+aside.appendChild(darkenBtn);
+darkenBtn.textContent = "Darken";
+let lightenBtn = document.createElement('button');
+aside.appendChild(lightenBtn);
+lightenBtn.textContent = "Lighten";
 body.appendChild(aside);
 let textSizeControl = document.createElement('p');
 textSizeControl.textContent = `16 x 16`;
@@ -91,8 +97,23 @@ clearButton.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.style.backgroundColor = 'white';
     });
-})
+});
 
+darkenBtn.addEventListener('click', e => {
+    document.querySelectorAll('section').forEach(element => {
+        element.addEventListener('click', e => {
+            element.style.opacity = 0.1;
+            let valueColour = element.style.getPropertyValue('background-color');
+            let opacity = element.style.getPropertyValue('opacity')
+            element.style.backgroundColor = valueColour;
+            let counter = 1;
+            while(counter <= 10){
+                element.style.opacity = opacity + 0.1;  
+                counter++;
+            }
+        });
+    });
+})
 
 // for (let index = 0; index < 4096; index++) {
 //     let innerSection = document.createElement('div');
