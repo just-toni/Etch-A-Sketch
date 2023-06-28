@@ -102,18 +102,28 @@ clearButton.addEventListener('click', e => {
 darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.addEventListener('click', e => {
-            element.style.opacity = 0.1;
+            // element.style.filter = "brightness(0.1)";
             let valueColour = element.style.getPropertyValue('background-color');
-            let opacity = element.style.getPropertyValue('opacity')
+            let brightness = 0.1;
+            console.log(brightness);
             element.style.backgroundColor = valueColour;
-            let counter = 1;
-            while(counter <= 10){
-                element.style.opacity = opacity + 0.1;  
+            let counter = 0;
+            while(counter < 10){
+                element.style.filter = `brightness(${brightness})`;
+                brightness += 0.1;
+                console.log(brightness)
                 counter++;
+                console.log(counter);
             }
+            // if(counter > 10){
+            //     let errortext = document.createElement('p');
+            //     document.querySelectorAll('button')[5].appendChild(errortext);
+            //     errortext.textContent = "Color can't be darkened any further!";
+            //     errortext.style.cssText = "color: red; font-size 16px";
+            // }
         });
     });
-})
+});
 
 // for (let index = 0; index < 4096; index++) {
 //     let innerSection = document.createElement('div');
