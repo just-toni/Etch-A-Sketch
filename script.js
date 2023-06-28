@@ -46,7 +46,7 @@ aside.appendChild(buttonslider);
 
 for (let index = 0; index < 256; index++) {
     let innerSection = document.createElement('section');
-    innerSection.style.cssText = "background-color: white; width: 27px; height: 27px; border: black 0.5px solid; ";
+    innerSection.style.cssText = "background: white; width: 27px; height: 27px; border: black 0.5px solid; ";
     innerSection.setAttribute('class', 'grid-sqaure')
     main.appendChild(innerSection);
 }
@@ -103,18 +103,20 @@ darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.addEventListener('click', e => {
             // element.style.filter = "brightness(0.1)";
-            let valueColour = element.style.getPropertyValue('background-color');
-            let brightness = 0.1;
+            let valueColour = element.style.getPropertyValue('background');
+            let brightness = 40;
             console.log(brightness);
-            element.style.backgroundColor = valueColour;
-            let counter = 0;
-            while(counter < 10){
-                element.style.filter = `brightness(${brightness})`;
-                brightness += 0.1;
-                console.log(brightness)
-                counter++;
-                console.log(counter);
-            }
+            console.log(valueColour);
+            element.style.background = valueColour;
+            // let counter = 0;
+            // while(counter < 10){
+                // element.style.filter = `brightness(${brightness})`;
+                element.style.background = `darken(${valueColour}, ${brightness}%)`;
+                // brightness += 10;
+                // console.log(brightness)
+                // counter++;
+                // console.log(counter);
+            // }
             // if(counter > 10){
             //     let errortext = document.createElement('p');
             //     document.querySelectorAll('button')[5].appendChild(errortext);
