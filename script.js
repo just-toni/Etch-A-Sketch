@@ -80,7 +80,7 @@ function randomColorGenerator(e){
 defaultColourBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.addEventListener('mouseover', e => {
-            element.style.backgroundColor = 'blue';
+            element.style.background = 'lightblue';
         });
     });
 });
@@ -104,14 +104,14 @@ darkenBtn.addEventListener('click', e => {
         element.addEventListener('click', e => {
             // element.style.filter = "brightness(0.1)";
             let valueColour = element.style.getPropertyValue('background');
-            let brightness = 40;
+            let brightness = 1;
             console.log(brightness);
             console.log(valueColour);
-            element.style.background = valueColour;
+            // element.style.background = valueColour;
             // let counter = 0;
             // while(counter < 10){
-                // element.style.filter = `brightness(${brightness})`;
-                element.style.background = `darken(${valueColour}, ${brightness}%)`;
+                element.style.filter = `brightness(${brightness})`;
+                // element.style.background = `darken(${valueColour}, ${brightness}%)`;
                 // brightness += 10;
                 // console.log(brightness)
                 // counter++;
