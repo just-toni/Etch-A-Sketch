@@ -88,44 +88,47 @@ defaultColourBtn.addEventListener('click', e => {
 eraserBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.addEventListener('click', e => {
-            element.style.backgroundColor = 'white';
+            element.style.background = 'white';
+            element.style.filter = "brightness(1)";
         });
     });
 });
 
 clearButton.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
-        element.style.backgroundColor = 'white';
+        element.style.background = 'white';
+        element.style.filter = "brightness(1)";
     });
 });
 
+let counter = 0;
+let brightness = 100;
 darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
-        element.addEventListener('click', e => {
-            // element.style.filter = "brightness(0.1)";
+        element.addEventListener('dblclick', e => {
             let valueColour = element.style.getPropertyValue('background');
-            let brightness = 1;
             console.log(brightness);
             console.log(valueColour);
-            // element.style.background = valueColour;
-            // let counter = 0;
-            // while(counter < 10){
-                element.style.filter = `brightness(${brightness})`;
-                // element.style.background = `darken(${valueColour}, ${brightness}%)`;
-                // brightness += 10;
-                // console.log(brightness)
-                // counter++;
-                // console.log(counter);
-            // }
-            // if(counter > 10){
-            //     let errortext = document.createElement('p');
-            //     document.querySelectorAll('button')[5].appendChild(errortext);
-            //     errortext.textContent = "Color can't be darkened any further!";
-            //     errortext.style.cssText = "color: red; font-size 16px";
-            // }
+            // element.style.background = `darken(${valueColour}, ${brightness}%)`;
+            
+            console.log(brightness)
+            console.log(counter);
+            if(counter > 10){
+                let errortext = document.createElement('p');
+                document.querySelectorAll('button')[5].appendChild(errortext);
+                errortext.textContent = "Color can't be darkened any further!";
+                errortext.style.cssText = "color: red; font-size 16px";
+            }
+            else{
+                element.style.filter = `brightness(${brightness/100})`;
+                brightness -= 10;
+            }
+            counter++;
         });
     });
 });
+
+
 
 // for (let index = 0; index < 4096; index++) {
 //     let innerSection = document.createElement('div');
