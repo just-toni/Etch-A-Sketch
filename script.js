@@ -22,13 +22,13 @@ aside.appendChild(eraserBtn);
 eraserBtn.textContent = "Erase";
 let darkenBtn = document.createElement('button');
 aside.appendChild(darkenBtn);
-let errortext = document.createElement('p');
-aside.appendChild(errortext);
-errortext.style.display = "none";
 darkenBtn.textContent = "Darken";
 let lightenBtn = document.createElement('button');
 aside.appendChild(lightenBtn);
 lightenBtn.textContent = "Lighten";
+let errortext = document.createElement('p');
+errortext.style.display = "none";
+aside.appendChild(errortext);
 body.appendChild(aside);
 let textSizeControl = document.createElement('p');
 textSizeControl.textContent = `16 x 16`;
@@ -109,14 +109,13 @@ darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         let counter = 0;
         let brightness = 100;
-        element.addEventListener('dblclick', e => {
-            let valueColour = element.style.getPropertyValue('background');
-            // element.style.background = `darken(${valueColour}, ${brightness}%)`;
+        element.addEventListener('click', e => {
             if(counter > 10){
                 document.querySelectorAll('p')[0].textContent = errortext;
                 errortext.textContent = "Color can't be darkened any further!";
-                setInterval(() => {
-                    errortext.style.cssText = "color: red; font-size 16px, visibility:hidden;";
+                errortext.style.cssText = "color: red; font-size 16px; display:inline;";
+                setTimeout(() => {
+                    errortext.style.display = "none";
                 }, 4000);
             }
             else{
@@ -124,9 +123,29 @@ darkenBtn.addEventListener('click', e => {
                 brightness -= 10;
             }
             counter++;
-            // errortext.style.display ="none";
         });
-        
+    });
+});
+
+lightenBtn.addEventListener('click', e => {
+    document.querySelectorAll('section').forEach(element => {
+        let counter = 0;
+        let brightness = 100;
+        element.addEventListener('click', e => {
+            if(counter > 10){
+                document.querySelectorAll('p')[0].textContent = errortext;
+                errortext.textContent = "Color can't be lightened any further!";
+                errortext.style.cssText = "color: red; font-size 16px; display:inline;";
+                setTimeout(() => {
+                    errortext.style.display = "none";
+                }, 4000);
+            }
+            else{
+                element.style.filter = `brightness(${brightness/100})`;
+                brightness += 10;
+            }
+            counter++;
+        });
     });
 });
 
