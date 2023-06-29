@@ -148,10 +148,12 @@ darkenBtn.addEventListener('click', e => {
 
 lightenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
-        let counter = 0;
-        let brightness = 100;
+        let counter = 10;
+        // let brightness = 10;
         element.addEventListener('click', e => {
-            if(counter > 10){
+            let elementColour = element.style.getPropertyValue('background');
+            console.log(elementColour);
+            if(counter < 0){
                 document.querySelectorAll('p')[0].textContent = errortext;
                 errortext.textContent = "Color can't be lightened any further!";
                 errortext.style.cssText = "color: red; font-size 16px; display:inline;";
@@ -159,11 +161,32 @@ lightenBtn.addEventListener('click', e => {
                     errortext.style.display = "none";
                 }, 4000);
             }
-            else{
-                element.style.filter = `brightness(${brightness/100})`;
-                brightness += 10;
+            else if(counter === 10){
+                // element.style.filter = `brightness(${brightness/100})`;
+                // brightness -= 10;
+                elementColour = elementColour.slice(0, elementColour.length -1);
+                console.log(elementColour);
+                elementColour = elementColour + `, ${(counter * 10)/ 100})`;
+                console.log(elementColour);
+                element.style.background = `${elementColour}`;
+                console.log(element.style.background);
+                console.log(counter);
+                // const darkeningPercentage = interactions * 10;
+                // const newColor = `rgba(0, 0, 0, ${darkeningPercentage / 100})`;
             }
-            counter++;
+            else{
+                // element.style.filter = `brightness(${brightness/100})`;
+                // brightness += 10;
+                console.log(elementColour);
+                elementColour = elementColour.slice(0, elementColour.length -1);
+                // console.log(elementColour);
+                elementColour = elementColour + `${(counter * 10)/ 100})`;
+                element.style.background = `${elementColour}`;
+                console.log(element.style.getPropertyValue('background'));
+                console.log(counter);
+            }
+            // brightness--;
+            counter--;
         });
     });
 });
