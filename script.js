@@ -108,7 +108,7 @@ clearButton.addEventListener('click', e => {
 darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         let counter = 0;
-        let brightness = 100;
+        // let brightness = 100;
         element.addEventListener('click', e => {
             counter++;
             let elementColour = element.style.getPropertyValue('background');
@@ -124,22 +124,50 @@ darkenBtn.addEventListener('click', e => {
             else if(counter === 1){
                 // element.style.filter = `brightness(${brightness/100})`;
                 // brightness -= 10;
-                elementColour = elementColour.slice(0, elementColour.length -1);
+                // elementColour = elementColour.slice(0, elementColour.length -1);
+                // console.log(elementColour);
+                // elementColour = elementColour + `, ${(counter * 10)/ 100})`;
+                // element.style.background = `${elementColour}`;
+                // console.log(element.style.getPropertyValue('background'));
+                // console.log(counter);
+                // elementColour = elementColour.slice(0, elementColour.length -1);
                 console.log(elementColour);
-                elementColour = elementColour + `, ${(counter * 10)/ 100})`;
-                element.style.background = `${elementColour}`;
-                console.log(element.style.getPropertyValue('background'));
+                elementColour = elementColour.slice(4, elementColour.length -1);
+                console.log(elementColour);
+                const colorArray = elementColour.split(',');
+                console.log(colorArray);
+                colorArray.map(color => Math.round(color * (100 - (counter * 10) / 100)));
+                element.style.background = `rgb${colorArray[0]},  ${colorArray[1]}, ${colorArray[2]}`;
+                // elementColour.substring(3, elementColour.length -1);
+                // console.log(elementColour);
+                // elementColour = elementColour + `, ${(counter * 10)/ 100})`;
+                // console.log(elementColour);
+                // element.style.background = `${elementColour}`;
+                // console.log(element.style.background);
                 console.log(counter);
                 // const darkeningPercentage = interactions * 10;
                 // const newColor = `rgba(0, 0, 0, ${darkeningPercentage / 100})`;
             }
             else{
-                elementColour = elementColour.slice(0, elementColour.length -4);
+                elementColour = elementColour.slice(4, elementColour.length -1);
                 console.log(elementColour);
-                elementColour = elementColour + `${(counter * 10)/ 100})`;
-                element.style.background = `${elementColour}`;
-                console.log(element.style.getPropertyValue('background'));
-                console.log(counter);
+                const colorArray = elementColour.split(',').map(Number);
+                console.log(colorArray);
+                const newColor = colorArray.map(color => {
+                    // color = Number.parseFloat(color);
+                    // color * (100 - (counter * 10) / 100);
+                    // console.log(color * (100 - (counter * 10) / 100));
+                    Math.round(color * (100 - (counter * 10) / 100));
+                    console.log(Math.round(color * (100 - (counter * 10)) / 100));
+                });
+                console.log(newColor);
+                element.style.background = `rgb${newColor[0]},  ${newColor[1]}, ${newColor[2]}`;
+                console.log(colorArray);
+                // console.log(elementColour);
+                // elementColour = elementColour + `${(counter * 10)/ 100})`;
+                // element.style.background = `${elementColour}`;
+                // console.log(element.style.getPropertyValue('background'));
+                // console.log(counter);
             }
             
         });
@@ -151,6 +179,7 @@ lightenBtn.addEventListener('click', e => {
         let counter = 10;
         // let brightness = 10;
         element.addEventListener('click', e => {
+            counter--;
             let elementColour = element.style.getPropertyValue('background');
             console.log(elementColour);
             if(counter < 0){
@@ -161,7 +190,7 @@ lightenBtn.addEventListener('click', e => {
                     errortext.style.display = "none";
                 }, 4000);
             }
-            else if(counter === 10){
+            else if(counter === 9){
                 // element.style.filter = `brightness(${brightness/100})`;
                 // brightness -= 10;
                 elementColour = elementColour.slice(0, elementColour.length -1);
@@ -178,15 +207,16 @@ lightenBtn.addEventListener('click', e => {
                 // element.style.filter = `brightness(${brightness/100})`;
                 // brightness += 10;
                 console.log(elementColour);
-                elementColour = elementColour.slice(0, elementColour.length -1);
-                // console.log(elementColour);
+                elementColour = elementColour.slice(0, elementColour.length -4);
+                console.log(elementColour);
                 elementColour = elementColour + `${(counter * 10)/ 100})`;
+                console.log(elementColour);
                 element.style.background = `${elementColour}`;
                 console.log(element.style.getPropertyValue('background'));
                 console.log(counter);
             }
             // brightness--;
-            counter--;
+            
         });
     });
 });
