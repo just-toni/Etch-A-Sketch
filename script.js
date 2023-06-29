@@ -83,7 +83,7 @@ function randomColorGenerator(e){
 defaultColourBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.addEventListener('mouseover', e => {
-            element.style.background = 'lightblue';
+            element.style.background = 'rgb(173,216,230)';
         });
     });
 });
@@ -110,6 +110,8 @@ darkenBtn.addEventListener('click', e => {
         let counter = 0;
         let brightness = 100;
         element.addEventListener('click', e => {
+            let elementColour = element.style.getPropertyValue('background');
+            console.log(elementColour);
             if(counter > 10){
                 document.querySelectorAll('p')[0].textContent = errortext;
                 errortext.textContent = "Color can't be darkened any further!";
@@ -119,8 +121,9 @@ darkenBtn.addEventListener('click', e => {
                 }, 4000);
             }
             else{
-                element.style.filter = `brightness(${brightness/100})`;
-                brightness -= 10;
+                // element.style.filter = `brightness(${brightness/100})`;
+                // brightness -= 10;
+                element.style.background = `${elementColour.concat(``)}`
             }
             counter++;
         });
