@@ -22,6 +22,9 @@ aside.appendChild(eraserBtn);
 eraserBtn.textContent = "Erase";
 let darkenBtn = document.createElement('button');
 aside.appendChild(darkenBtn);
+let errortext = document.createElement('p');
+aside.appendChild(errortext);
+errortext.style.display = "none";
 darkenBtn.textContent = "Darken";
 let lightenBtn = document.createElement('button');
 aside.appendChild(lightenBtn);
@@ -101,30 +104,29 @@ clearButton.addEventListener('click', e => {
     });
 });
 
-let counter = 0;
-let brightness = 100;
+
 darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
+        let counter = 0;
+        let brightness = 100;
         element.addEventListener('dblclick', e => {
             let valueColour = element.style.getPropertyValue('background');
-            console.log(brightness);
-            console.log(valueColour);
             // element.style.background = `darken(${valueColour}, ${brightness}%)`;
-            
-            console.log(brightness)
-            console.log(counter);
             if(counter > 10){
-                let errortext = document.createElement('p');
-                document.querySelectorAll('button')[5].appendChild(errortext);
+                document.querySelectorAll('p')[0].textContent = errortext;
                 errortext.textContent = "Color can't be darkened any further!";
-                errortext.style.cssText = "color: red; font-size 16px";
+                setInterval(() => {
+                    errortext.style.cssText = "color: red; font-size 16px, visibility:hidden;";
+                }, 4000);
             }
             else{
                 element.style.filter = `brightness(${brightness/100})`;
                 brightness -= 10;
             }
             counter++;
+            // errortext.style.display ="none";
         });
+        
     });
 });
 
