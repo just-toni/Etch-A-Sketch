@@ -113,7 +113,7 @@ darkenBtn.addEventListener('click', e => {
             counter++;
             let elementColour = element.style.getPropertyValue('background');
             console.log(elementColour);
-            if(counter > 11){
+            if(counter > 10){
                 document.querySelectorAll('p')[0].textContent = errortext;
                 errortext.textContent = "Color can't be darkened any further!";
                 errortext.style.cssText = "color: red; font-size 16px; display:inline;";
@@ -121,15 +121,25 @@ darkenBtn.addEventListener('click', e => {
                     errortext.style.display = "none";
                 }, 4000);
             }
-            else{
+            else if(counter === 1){
                 // element.style.filter = `brightness(${brightness/100})`;
                 // brightness -= 10;
                 elementColour = elementColour.slice(0, elementColour.length -1);
                 console.log(elementColour);
-                elementColour = elementColour + `${(counter * 10)/ 100}`
-                element.style.background = `${elementColour}`
+                elementColour = elementColour + `, ${(counter * 10)/ 100})`;
+                element.style.background = `${elementColour}`;
+                console.log(element.style.getPropertyValue('background'));
+                console.log(counter);
                 // const darkeningPercentage = interactions * 10;
                 // const newColor = `rgba(0, 0, 0, ${darkeningPercentage / 100})`;
+            }
+            else{
+                elementColour = elementColour.slice(0, elementColour.length -4);
+                console.log(elementColour);
+                elementColour = elementColour + `${(counter * 10)/ 100})`;
+                element.style.background = `${elementColour}`;
+                console.log(element.style.getPropertyValue('background'));
+                console.log(counter);
             }
             
         });
