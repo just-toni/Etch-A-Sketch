@@ -92,7 +92,6 @@ eraserBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.addEventListener('click', e => {
             element.style.background = 'white';
-            element.style.filter = "brightness(1)";
         });
     });
 });
@@ -100,7 +99,6 @@ eraserBtn.addEventListener('click', e => {
 clearButton.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         element.style.background = 'white';
-        element.style.filter = "brightness(1)";
     });
 });
 
@@ -108,9 +106,7 @@ clearButton.addEventListener('click', e => {
 darkenBtn.addEventListener('click', e => {
     document.querySelectorAll('section').forEach(element => {
         let counter = 9;
-        // let brightness = 100;
         element.addEventListener('click', e => {
-            
             let elementColour = element.style.getPropertyValue('background');
             console.log(elementColour);
             if(counter < 1){
@@ -152,20 +148,4 @@ lightenBtn.addEventListener('click', e => {
     });
 });
 
-
-
-// for (let index = 0; index < 4096; index++) {
-//     let innerSection = document.createElement('div');
-//     innerSection.style.cssText = "background-color: white; width: 7px; height: 7px; border: black 0.5px solid; ";
-//     main.appendChild(innerSection);
-//     innerSection.addEventListener('mouseover', e =>{
-//         innerSection.style.backgroundColor = 'blue';
-//     })
-    // innerSection.addEventListener('mouseover', e => {
-
-    // })
-    // innerSection.addEventListener('mouseout', e =>{
-    //     innerSection.style.backgroundColor = 'white';
-    // })
-// }
 body.appendChild(main);
