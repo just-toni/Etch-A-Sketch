@@ -1,9 +1,10 @@
 let body = document.querySelector('body');
 let main = document.createElement('main');
 let aside = document.createElement('aside');
-body.style.cssText = "display: flex; flex-direction: row;";
-main.style.cssText = "display: flex; flex-wrap: wrap; border: black 10px solid; width: 457.7px; height: 458.7px;";
-aside.style.cssText = "width: 30%; display: flex; flex-direction: column";
+body.style.cssText = "display: flex; flex-direction: row; justify-content: space-evenly;";
+main.setAttribute('id', 'grid');
+main.style.cssText = "margin-top: 50px; display: inline-grid; grid-template-columns: repeat(16, 2fr); grid-template-rows: repeat(16, 2fr); border: 5px solid white; height: 600px; width: 600px; background-color: grey;";
+aside.style.cssText = "width: 30%; display: flex; flex-direction: column;";
 
 let randomColourBtn = document.createElement('button');
 aside.appendChild(randomColourBtn);
@@ -49,10 +50,23 @@ aside.appendChild(buttonslider);
 
 for (let index = 0; index < 256; index++) {
     let innerSection = document.createElement('section');
-    innerSection.style.cssText = "background: white; width: 27px; height: 27px; border: black 0.5px solid; ";
+    innerSection.style.cssText = "background: white; border: 0.5px solid black; ";
     innerSection.setAttribute('class', 'grid-sqaure')
     main.appendChild(innerSection);
-}
+};
+body.appendChild(main);
+
+buttonslider.addEventListener('click', e =>{
+    main.innerHTML = "";
+    let range = buttonslider.value;
+    main.style.gridTemplateColumns = `repeat(${range}, 2fr)`;
+    main.style.gridTemplateRows = `repeat(${range}, 2fr)`;
+    for (let index = 0; index < range * range; index++) {
+        let innerSection = document.createElement('section');
+        innerSection.style.cssText = `background: white; border: 0.5px solid black; `;
+        main.appendChild(innerSection);
+    }
+});
 
 randomColourBtn.addEventListener('click', randomColorGenerator2);
 function randomColorGenerator2(e){
@@ -80,12 +94,31 @@ function randomColorGenerator(e){
     });
 }
 
+let active = true;
+
+// document.querySelectorAll('section').forEach(element => {
+//     element.addEventListener('mouseover', e => {
+//         element.style.background = 'rgb(173,216,230)';
+//     });
+// });
+
 defaultColourBtn.addEventListener('click', e => {
-    document.querySelectorAll('section').forEach(element => {
-        element.addEventListener('mouseenter', e => {
-            element.style.background = 'rgb(173,216,230)';
+    if(active){
+        document.querySelectorAll('section').forEach(element => {
+            element.addEventListener('mouseover', e => {
+                element.style.background = 'rgb(173,216,230)';
+            });
         });
-    });
+        active = false;
+    }
+    else{
+        document.querySelectorAll('section').forEach(element => {
+            element.removeEventListener('mouseover', e =>{
+                element.style.backgroundColor = "white";
+            });
+        });
+        active = true;
+    }
 });
 
 eraserBtn.addEventListener('click', e => {
@@ -148,4 +181,3 @@ lightenBtn.addEventListener('click', e => {
     });
 });
 
-body.appendChild(main);

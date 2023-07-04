@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #grid-container {
+        width: 900px;
+        height: 800px;
+        border: 1px solid black;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(0, 1fr));
+        }
+
+        .grid-square {
+        border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="grid-container"></div>
+    <script>
+        const gridContainer = document.getElementById("grid-container");
+
+        function generateGrid(numSquares) {
+        // Calculate the width and height of each square
+        const squareWidth = 900 / numSquares;
+        const squareHeight = 800 / numSquares;
+
+        // Clear any existing grid
+        gridContainer.innerHTML = "";
+
+        // Generate the grid squares
+        for (let i = 0; i < numSquares; i++) {
+            for (let j = 0; j < numSquares; j++) {
+                const square = document.createElement("div");
+                square.classList.add("grid-square");
+                square.style.width = squareWidth + "px";
+                square.style.height = squareHeight + "px";
+                gridContainer.appendChild(square);
+            }
+        }
+        }
+
+        // Example usage:
+        const numSquares = 100; // User-specified number of squares
+        generateGrid(numSquares);
+
+    </script>
+</body>
+</html>
