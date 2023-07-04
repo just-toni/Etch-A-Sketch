@@ -8,7 +8,7 @@ aside.style.cssText = "width: 30%; display: flex; flex-direction: column;";
 
 let randomColourBtn = document.createElement('button');
 aside.appendChild(randomColourBtn);
-randomColourBtn.textContent = "Random Color Individual Grid";
+randomColourBtn.textContent = "Random Color Individual Grid Squares";
 let randomColourBtn2 = document.createElement('button');
 aside.appendChild(randomColourBtn2);
 randomColourBtn2.textContent = "Random Color Entire Grid";
@@ -71,7 +71,7 @@ buttonslider.addEventListener('click', e =>{
 randomColourBtn.addEventListener('click', randomColorGenerator2);
 function randomColorGenerator2(e){
     document.querySelectorAll('section').forEach(element => {
-        element.addEventListener('click', e => {
+        element.addEventListener('mouseover', e => {
             let first = Math.floor(Math.random()*255);
             let second = Math.floor(Math.random()*255);
             let third = Math.floor(Math.random()*255);
@@ -88,7 +88,7 @@ function randomColorGenerator(e){
     let third = Math.floor(Math.random()*255);
     let rgb = `rgb(${first}, ${second}, ${third})`;
     document.querySelectorAll('section').forEach(element => {
-        element.addEventListener('click', e => {
+        element.addEventListener('mouseover', e => {
             element.style.backgroundColor = rgb;
         });
     });
@@ -181,3 +181,11 @@ lightenBtn.addEventListener('click', e => {
     });
 });
 
+
+/**
+ * things to be done:
+ * add deseign
+ * find a way to disable and enable the hover of each cell.
+ * how to lighten a darkened cell and vice versa
+ * 
+ */
